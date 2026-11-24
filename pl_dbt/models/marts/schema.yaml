@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: fct_team_match
+    columns:
+      - name: team_id
+        tests: [not_null]
+      - name: outcome
+        tests:
+          - accepted_values:
+              values: ['W', 'D', 'L']

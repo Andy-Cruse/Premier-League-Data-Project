@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_matches
+    columns:
+      - name: match_id
+        tests: [unique, not_null]
+      - name: result
+        tests:
+          - accepted_values:
+              values: ['HOME_WIN', 'AWAY_WIN', 'DRAW']
+      - name: home_team_id
+        tests:
+          - relationships:
+              to: ref('stg_teams')
+              field: team_id
+      - name: away_team_id
+        tests:
+          - relationships:
+              to: ref('stg_teams')
+              field: team_id
+
+  - name: stg_teams
+    columns:
+      - name: team_id
+        tests: [unique, not_null]
